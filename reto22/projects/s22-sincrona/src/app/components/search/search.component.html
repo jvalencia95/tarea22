@@ -1,0 +1,29 @@
+<section class="container pt-5 mt-5">
+    <h2>Users Search</h2>
+    <section class="search-container my-5">
+        <label for="id" class="form-label">Enter Id</label>
+        <section class="input-container">
+            <input type="number" id="id" class="form-control" #txtId>
+            <button class="btn btn-primary" (click)="getUserId(txtId.value)">Buscar</button>
+        </section>
+    </section>
+    <ng-container *ngIf="!show">
+        <section *ngIf="!resultado">
+            <p>Usuario no encontrado</p>
+        </section>
+        <table class="table table-striped table-hover" *ngIf="resultado">
+            <thead class="table-dark" *ngIf="resultado">
+                <tr>
+                    <th *ngFor="let item of thead">{{ item | titlecase }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="user">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+</section>

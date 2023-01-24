@@ -1,0 +1,6 @@
+.container {
+    height: calc(100% - 52px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

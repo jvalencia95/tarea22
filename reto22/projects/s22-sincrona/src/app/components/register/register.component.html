@@ -1,0 +1,64 @@
+<main>
+  <section class="container col-sm-8 col-md-6 col-lg-4 col-xl-3">
+    <h1 class="text-center">REGISTRO</h1>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="mx-4">
+      <section class="form-group">
+        <label for="nombres" class="mb-2">First Name</label>
+        <input type="text" class="form-control mb-3" name="firstname" formControlName="firstname" autocomplete="off"
+          [ngStyle]="{'border-color': firstname?.invalid && (firstname?.dirty || firstname?.touched)?'red':''}">
+
+        <section *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)">
+          <section *ngIf="firstname?.errors?.['required']" class="alert alert-danger">El Nombre es obligatorio</section>
+        </section>
+      </section>
+
+      <section class="form-group">
+        <label for="apellidos" class="mb-2">Last Name</label>
+        <input type="text" class="form-control mb-3" name="lastname" formControlName="lastname" autocomplete="off"
+          [ngStyle]="{'border-color': lastname?.invalid && (lastname?.dirty || lastname?.touched)?'red':''}">
+
+        <section *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)">
+          <section *ngIf="lastname?.errors?.['required']" class="alert alert-danger">Los apellidos son obligatorio
+          </section>
+        </section>
+      </section>
+
+      <section class="form-group">
+        <label for="username" class="mb-2">Username</label>
+        <input type="text" class="form-control mb-3" name="username" formControlName="username" autocomplete="off"
+          [ngStyle]="{'border-color': username?.invalid && (username?.dirty || username?.touched)?'red':''}">
+
+        <section *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+          <section *ngIf="username?.errors?.['required']" class="alert alert-danger">su username es obligatorio
+          </section>
+        </section>
+      </section>
+
+      <section class="form-group">
+        <label for="dni">Password </label>
+        <section class="password">
+          <input matInput [type]="hide ? 'password' : 'text'" type="text" maxlength="8" class="form-control mb-3"
+            name="password" formControlName="password" autocomplete="off"
+            [ngStyle]="{'border-color': password?.invalid && (password?.dirty || password?.touched)?'red':''}">
+          <i mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </i>
+        </section>
+
+        <section *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+          <section *ngIf="password?.errors?.['required']" class="alert alert-danger">Su password es obligatorio
+          </section>
+          <section *ngIf="password?.errors?.['pattern']" class="alert alert-danger">Su password debe contener solo
+            números y deben ser 8</section>
+        </section>
+      </section>
+
+      <section class="form-group buttons-group">
+        <input type="submit" value="Registrar" class="btn btn-primary" (click)="SendForm()"
+          [disabled]="registroForm.invalid">
+        <input type="button" value="Cancelar" class="btn btn-danger" routerLink="/home">
+      </section>
+    </form>
+  </section>
+</main>
